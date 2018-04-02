@@ -4,7 +4,8 @@
   "description": "Mosca server with hooks for authorizing with AWS Cognito.",
   "main": "src/moscognito.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src"
   },
   "keywords": [
     "mosca",
@@ -19,7 +20,16 @@
   "author": "Matt Johnson (/src-system42), Cedrus LLC",
   "license": "MIT",
   "dependencies": {
+    "cognito-express": "^2.0.10",
+    "json-stringify-safe": "^5.0.1",
     "mosca": "^2.8.0",
     "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jasmine": "^2.9.1",
+    "jasmine-node": "^1.14.5"
   }
 }

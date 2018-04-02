@@ -5,7 +5,7 @@
         "jasmine": true
     },
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["error", 2],
         "eol-last": ["error", "never"],
         "func-names": ["error", "never"],
         "no-console": ["error", { "allow": ["info", "debug", "warn", "error"] }],
