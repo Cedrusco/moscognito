@@ -1,0 +1,21 @@
+{
+  "name": "moscognito",
+  "version": "1.0.0",
+  "description": "Mosca server with hooks for authorizing with AWS Cognito.",
+  "main": "src/moscognito.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mosca",
+    "mqtt",
+    "aws",
+    "cognito",
+    "subscribe",
+    "publish",
+    "oauth2",
+    "oauth"
+  ],
+  "author": "Matt Johnson (/src-system42), Cedrus LLC",
+  "license": "MIT"
+}
