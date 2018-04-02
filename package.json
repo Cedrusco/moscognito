@@ -4,8 +4,9 @@
   "description": "Mosca MQTT server with hooks for authorizing with AWS Cognito.",
   "main": "src/moscognito.js",
   "scripts": {
+    "lint": "eslint ./src",
     "test": "jasmine-node src",
-    "lint": "eslint ./src"
+    "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src"
   },
   "keywords": [
     "mosca",
@@ -30,6 +31,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jasmine": "^2.9.1",
+    "istanbul": "^0.4.5",
     "jasmine-node": "^1.14.5"
   }
 }
