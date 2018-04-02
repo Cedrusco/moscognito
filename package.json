@@ -17,5 +17,9 @@
     "oauth"
   ],
   "author": "Matt Johnson (/src-system42), Cedrus LLC",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mosca": "^2.8.0",
+    "uuid": "^3.2.1"
+  }
 }
