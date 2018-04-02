@@ -2,7 +2,7 @@
   "name": "moscognito",
   "version": "1.0.0",
   "description": "Mosca MQTT server with hooks for authorizing with AWS Cognito.",
-  "main": "src/moscognito.js",
+  "main": "index.js",
   "bin": {
     "moscognito": "./bin/moscognito.js"
   },
