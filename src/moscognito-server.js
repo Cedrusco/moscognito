@@ -142,7 +142,7 @@ class MoscognitoServer {
    * @param {object} profile The user profile to check for permissions
    */
   allowUserToSubscribe(profile, topic) {
-    return MoscognitoServer.topicMatches(topic, this.getUserTopics(profile));
+    return this.topicMatches(topic, this.getUserTopics(profile));
   }
 
   /**
@@ -152,7 +152,7 @@ class MoscognitoServer {
    * @param {object} profile The user profile to check for permissions
    */
   allowUserToPublish(profile, topic) {
-    return MoscognitoServer.topicMatches(topic, this.getUserTopics(profile));
+    return this.topicMatches(topic, this.getUserTopics(profile));
   }
 
   /**
@@ -165,10 +165,11 @@ class MoscognitoServer {
     return topics.filter((topic) => {
       // Get regex representation of topic (needs escape chars for string)
       const metachars = /[\-\[\]\/\{\}\(\)\*\?\.\\\^\$\|]/g; // eslint-disable-line no-useless-escape
-      const regex = new RegExp(topic
+      const replace = topic
         .replace(metachars, '\\$&') // Replace metachars except +
-        .replace('#', '(([^#])*(#)?)') // Replace # wildcard (multi-level: anything without # except at end)
-        .replace('+', '([^\\/#])*')); // Replace + wildcard (single-level: anything before a slash or #)
+        .replace(/#/g, '(([^#])*(#)?)') // Replace # wildcard (multi-level: anything without # except at end)
+        .replace(/\+/g, '([^\\/#])+'); // Replace + wildcard (single-level: anything before a slash or #)
+      const regex = new RegExp(`^${replace}$`); // Add start/end metachars
 
       // If requested topic matches, return true
       return requestedTopic.match(regex);

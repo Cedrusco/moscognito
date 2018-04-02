@@ -4,7 +4,7 @@
   "description": "Mosca server with hooks for authorizing with AWS Cognito.",
   "main": "src/moscognito.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine-node src",
     "lint": "eslint ./src"
   },
   "keywords": [
