@@ -1,7 +1,7 @@
 {
   "name": "moscognito",
-  "version": "1.0.1-1",
-  "description": "Mosca server with hooks for authorizing with AWS Cognito.",
+  "version": "1.0.0",
+  "description": "Mosca MQTT server with hooks for authorizing with AWS Cognito.",
   "main": "src/moscognito.js",
   "scripts": {
     "test": "jasmine-node src",
