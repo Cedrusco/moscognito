@@ -6,7 +6,7 @@ class MoscognitoServer {
   constructor(moscaConfig, authConfig, logger) {
     this.moscaConfig = moscaConfig;
     this.authConfig = authConfig;
-    this.logger = logger || console;
+    this.logger = logger || console; // Console by default
   }
 
   start() {
