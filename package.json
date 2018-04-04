@@ -11,10 +11,14 @@
     "moscognito": "./bin/moscognito.js"
   },
   "scripts": {
+    "prebuild": "rimraf dist && copyfiles package.json dist/",
+    "build": "copyfiles -u 1 src/**/*.js -e src/**/*.spec.js src/index.js dist/",
     "docker:build": "docker build -t moscognito .",
     "predocker:run": "npm run docker:build",
     "docker:run": "docker run moscognito",
     "lint": "eslint ./src",
+    "prepublish": "npm run build",
+    "publish": "echo TODO",
     "test": "jasmine-node src",
     "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src"
   },
@@ -37,11 +41,13 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "copyfiles": "^2.0.0",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jasmine": "^2.9.1",
     "istanbul": "^0.4.5",
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.14.5",
+    "rimraf": "^2.6.2"
   }
 }
