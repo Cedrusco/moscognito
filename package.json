@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "description": "Mosca MQTT server with hooks for authorizing with AWS Cognito.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cedrusco/moscognito"
+  },
   "bin": {
     "moscognito": "./bin/moscognito.js"
   },
   "scripts": {
+    "docker:build": "docker build -t moscognito .",
+    "predocker:run": "npm run docker:build",
+    "docker:run": "docker run moscognito",
     "lint": "eslint ./src",
     "test": "jasmine-node src",
     "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src"
