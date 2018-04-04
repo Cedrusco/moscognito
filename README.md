@@ -73,11 +73,34 @@ server.start();
 
 ## Standalone (TODO)
 
-Bacon ipsum dolor amet pork belly spare ribs fatback, pork chop hamburger corned beef salami frankfurter prosciutto tri-tip meatball capicola sausage. Tri-tip chuck drumstick, t-bone pastrami corned beef cupim prosciutto biltong alcatra tongue. Cupim bacon pancetta chicken cow. Jowl ham beef strip steak meatball burgdoggen ribeye biltong rump doner boudin tongue. Strip steak kielbasa pork loin, pastrami tri-tip swine capicola leberkas chuck cupim sirloin jerky. Alcatra jowl sausage rump swine ground round short ribs ball tip meatloaf filet mignon burgdoggen.
+Start a test standalone server using Docker (this assumes you have Docker installed on your system).
+
+Build the initial image:
+
+```bash
+npm run docker:build
+```
+
+Run the Moscognito server as a standalone with test credentials:
+
+```bash
+npm run docker:run -- -r <region> -e <expiry> -u <access|id> -i <pool id> -t <topics>
+```
+
+* `-r, --cognito-region`:  The AWS Cognito region
+* `-e, --cognito-expiration`:  The AWS Cognito token expiration timeframe (default = 3600000)
+* `-u, --cognito-usage`:  The AWS Cognito token usage.  Acceptable values are "access" and "token"
+* `-i, --cognito-id`:  The AWS Cognito user pool ID
+* `-t, --topics`:  Topics the valid user is allowed to connect to as a comma-separated list. e.g. `topic/1,topic/2`.
 
 ## Authors / Contributors
 
 * Matt Johnson (src-system42)
+
+## Credits / Inspiration
+* Matteo Collina for Mosca (https://github.com/mcollina/mosca/blob/master/lib/client.js)
+* Eugenio Pace for Auth0 Mosca inspiration (https://github.com/eugeniop/auth0mosca)
+* Logo generated using http://patorjk.com/software/taag/#p=display&f=Larry%203D&t=MOSCOGNITO
 
 ## Copyright
 

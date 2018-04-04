@@ -38,7 +38,7 @@ class MoscognitoServer {
 
     // Fired when the mqtt server is ready
     this.server.on('ready', () => {
-      this.logger.info('Mosca server is up and running:');
+      this.logger.info('Moscognito server is up and running:');
       if (this.moscaConfig.port) this.logger.info(`MQTT on port ${this.moscaConfig.port}`);
       if (this.moscaConfig.http && this.moscaConfig.http.port) this.logger.info(`MQTT/HTTP on port ${this.moscaConfig.http.port}`);
       if (this.moscaConfig.secure && this.moscaConfig.secure.port) this.logger.info(`MQTTS/TLS on port ${this.moscaConfig.secure.port}`);
@@ -181,7 +181,7 @@ class MoscognitoServer {
    * @param {object} client Client reference
    */
   onClientConnected(client) {
-    this.logger.info('New connection: ', stringify(client.profile, null, 2));
+    this.logger.debug('New connection: ', stringify(client.profile, null, 2));
   }
 
   /**
@@ -189,7 +189,7 @@ class MoscognitoServer {
    * @param {object} client Client reference
    */
   onClientDisconnecting(client) {
-    this.logger.info('Disconnecting: ', stringify(client.profile, null, 2));
+    this.logger.debug('Disconnecting: ', stringify(client.profile, null, 2));
   }
 
   /**
@@ -197,7 +197,7 @@ class MoscognitoServer {
    * @param {object} client Client reference
    */
   onClientDisconnected(client) {
-    this.logger.info('Disconnected: ', stringify(client.profile, null, 2));
+    this.logger.debug('Disconnected: ', stringify(client.profile, null, 2));
   }
 
   /**
@@ -205,8 +205,8 @@ class MoscognitoServer {
    * @param {object} message The message published to the topic
    * @param {object} client Client reference
    */
-  onPublished(message, client) {
-    this.logger.info('Published: ', stringify({ topic: message.topic, payload: message.payload.toString(), client }, null, 2));
+  onPublished(message, client) { // eslint-disable-line no-unused-vars
+    this.logger.debug('Published: ', stringify({ topic: message.topic, payload: message.payload.toString() }, null, 2));
   }
 
   /**
@@ -214,8 +214,8 @@ class MoscognitoServer {
    * @param {object} topic The topic subscribed to
    * @param {object} client Client reference
    */
-  onSubscribed(topic, client) {
-    this.logger.info('Subscribed: ', stringify({ topic, client }, null, 2));
+  onSubscribed(topic, client) { // eslint-disable-line no-unused-vars
+    this.logger.debug('Subscribed: ', stringify({ topic }, null, 2));
   }
 
   /**
@@ -223,8 +223,8 @@ class MoscognitoServer {
    * @param {object} topic The topic the user unsubscribed from
    * @param {object} client Client reference
    */
-  onUnsubscribed(topic, client) {
-    this.logger.info('Unsubscribed: ', stringify({ topic, client }, null, 2));
+  onUnsubscribed(topic, client) { // eslint-disable-line no-unused-vars
+    this.logger.debug('Unsubscribed: ', stringify({ topic }, null, 2));
   }
 }
 

@@ -51,9 +51,15 @@ RUN node -v
 
 # Install MongoDB
 RUN apt-get install -y mongodb
+RUN /usr/bin/mongod --dbpath /var/lib/mongodb/ &
+
+# Set up working directory
+RUN mkdir /broker
+WORKDIR /broker
+ADD ./dist /broker
+RUN cd /broker && npm install --production
 
 # Set up certs
-RUN mkdir /broker
 RUN openssl req \
     -new \
     -newkey rsa:4096 \
@@ -62,11 +68,9 @@ RUN openssl req \
     -x509 \
     -subj "/C=US/ST=NY/L=NYC/O=Dis/CN=www.cedrus.digital" \
     -keyout /broker/moscognito.key \
-    -out /broker/moscognito.cert
-
-# Set up working directory
-WORKDIR /broker
-ADD ./src/bin/moscognito.js /broker
+    -out /broker/moscognito.crt
 
 # Enter at moscognito broker CLI
-ENTRYPOINT ["node", "/broker/moscognito.js"]
+EXPOSE 8883
+EXPOSE 8443
+ENTRYPOINT [ "/bin/bash", "/broker/bin/moscognito.sh" ]

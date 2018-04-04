@@ -12,7 +12,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist && copyfiles package.json dist/",
-    "build": "copyfiles -u 1 src/**/*.js -e src/**/*.spec.js src/index.js dist/",
+    "build": "copyfiles -u 1 src/**/*.js -e src/**/*.spec.js src/index.js src/bin/* dist/",
+    "predocker:build": "npm run build",
     "docker:build": "docker build -t moscognito .",
     "predocker:run": "npm run docker:build",
     "docker:run": "docker run moscognito",
@@ -36,7 +37,9 @@
   "license": "MIT",
   "dependencies": {
     "cognito-express": "^2.0.10",
+    "commander": "^2.15.1",
     "json-stringify-safe": "^5.0.1",
+    "mongodb": "^2.2.35",
     "mosca": "^2.8.0",
     "uuid": "^3.2.1"
   },
