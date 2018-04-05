@@ -1,6 +1,15 @@
-# Moscognito
+<pre>
+         _____   ____    ____     _____   ____    __  __  ______  ______  _____      
+ /'\_/`\/\  __`\/\  _`\ /\  _`\  /\  __`\/\  _`\ /\ \/\ \/\__  _\/\__  _\/\  __`\    
+/\      \ \ \/\ \ \,\L\_\ \ \/\_\\ \ \/\ \ \ \L\_\ \ `\\ \/_/\ \/\/_/\ \/\ \ \/\ \   
+\ \ \__\ \ \ \ \ \/_\__ \\ \ \/_/_\ \ \ \ \ \ \L_L\ \ , ` \ \ \ \   \ \ \ \ \ \ \ \  
+ \ \ \_/\ \ \ \_\ \/\ \L\ \ \ \L\ \\ \ \_\ \ \ \/, \ \ \`\ \ \_\ \__ \ \ \ \ \ \_\ \ 
+  \ \_\\ \_\ \_____\ `\____\ \____/ \ \_____\ \____/\ \_\ \_\/\_____\ \ \_\ \ \_____\
+   \/_/ \/_/\/_____/\/_____/\/___/   \/_____/\/___/  \/_/\/_/\/_____/  \/_/  \/_____/
+                                                                                     
+=====================================================================================                        </pre>
 
-## Overview
+## Moscognito Overview
 
 Modified Mosca MQTT server with AWS Cognito as both standalone and integrated Node.js class authorizing client connections and pub/sub.
 
@@ -71,7 +80,7 @@ server.start();
 
 * `broker`: The Mosca configuration using the `moscaSettings` properties defined [here](https://github.com/mcollina/mosca/wiki/Mosca-basic-usage).
 
-## Standalone (TODO)
+## Standalone
 
 Start a test standalone server using Docker (this assumes you have Docker installed on your system).
 
@@ -92,6 +101,11 @@ npm run docker:run -- -r <region> -e <expiry> -u <access|id> -i <pool id> -t <to
 * `-u, --cognito-usage`:  The AWS Cognito token usage.  Acceptable values are "access" and "token"
 * `-i, --cognito-id`:  The AWS Cognito user pool ID
 * `-t, --topics`:  Topics the valid user is allowed to connect to as a comma-separated list. e.g. `topic/1,topic/2`.
+
+## TODO
+
+* Add backend configuration for standalone
+* Add certificate configuration for standalone
 
 ## Authors / Contributors
 
