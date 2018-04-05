@@ -21,20 +21,22 @@ Install dependencies by running `npm install --production` for production, or `n
 
 ## Scripts
 
-### Building / Publishing
+### Building
 
 ```bash
 npm run build
-```
-
-```bash
-npm run publish
 ```
 
 ### Lint
 
 ```bash
 npm run lint
+```
+
+### Publishing
+
+```bash
+npm run publish
 ```
 
 ### Test
@@ -45,7 +47,7 @@ Without coverage
 npm run test
 ```
 
-With coverage (TODO: currently below 70%, hit threshold)
+With coverage `(TODO: currently below 70%, hit threshold)`
 
 ```bash
 npm run test:coverage
@@ -108,12 +110,14 @@ npm run docker:run -- -r <region> -e <expiry> -u <access|id> -i <pool id> -t <to
 
 * Add backend configuration for standalone
 * Add certificate configuration for standalone
+* Increase code coverage
 
 ## Authors / Contributors
 
 * Matt Johnson (src-system42)
 
 ## Credits / Inspiration
+
 * Matteo Collina for Mosca (https://github.com/mcollina/mosca/blob/master/lib/client.js)
 * Eugenio Pace for Auth0 Mosca inspiration (https://github.com/eugeniop/auth0mosca)
 * Logo generated using http://patorjk.com/software/taag/#p=display&f=Larry%203D&t=MOSCOGNITO

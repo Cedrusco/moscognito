@@ -18,7 +18,7 @@
     "predocker:run": "npm run docker:build",
     "docker:run": "docker run moscognito",
     "lint": "eslint ./src",
-    "prepublish": "npm run build",
+    "prepublish": "npm run lint && npm run test:coverage && npm run build",
     "publish": "echo TODO",
     "test": "jasmine-node src",
     "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src"
