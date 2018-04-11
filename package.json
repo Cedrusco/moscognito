@@ -21,7 +21,9 @@
     "prepublish": "npm run lint && npm run test:coverage && npm run build",
     "publish": "echo TODO",
     "test": "jasmine-node src",
-    "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src"
+    "test:watch": "jasmine-node src --autotest --watch src --color",
+    "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src",
+    "test:coverage:watch": "nodemon --exec npm run test:coverage"
   },
   "keywords": [
     "mosca",
@@ -36,8 +38,10 @@
   "author": "Matt Johnson (/src-system42), Cedrus LLC",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "cognito-express": "^2.0.10",
     "commander": "^2.15.1",
+    "js-base64": "^2.4.3",
     "json-stringify-safe": "^5.0.1",
     "mongodb": "^2.2.35",
     "mosca": "^2.8.0",
@@ -51,6 +55,8 @@
     "eslint-plugin-jasmine": "^2.9.1",
     "istanbul": "^0.4.5",
     "jasmine-node": "^1.14.5",
+    "nock": "^9.2.5",
+    "nodemon": "^1.17.3",
     "rimraf": "^2.6.2"
   }
 }
