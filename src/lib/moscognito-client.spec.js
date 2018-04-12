@@ -168,4 +168,59 @@ describe('MoscognitoClient', () => {
       client.on(eventName, eventHandler);
     });
   });
+
+  describe('pub/sub', () => {
+    it('should subscribe to topic with given settings', (done) => {
+      const subscribeSettings = {
+        qos: 1
+      };
+      const topic = 'topic1';
+      const client = new MoscognitoClient({
+        subscribe: subscribeSettings
+      });
+      client.mqtt = {
+        subscribe(topics, options, callback) {} // eslint-disable-line
+      };
+      spyOn(client.mqtt, 'subscribe').andCallFake((topics, options) => {
+        expect(topics).toBe(topic);
+        expect(options).toBe(subscribeSettings);
+        done();
+      });
+      client.subscribe(topic);
+    });
+
+    it('should publish to topic with given settings', (done) => {
+      const publishSettings = {
+        qos: 1
+      };
+      const topic = 'topic1';
+      const client = new MoscognitoClient({
+        publish: publishSettings
+      });
+      const payload = 'testing1,2,3';
+      client.mqtt = {
+        publish(topics, message, options, callback) {} // eslint-disable-line
+      };
+      spyOn(client.mqtt, 'publish').andCallFake((topics, message, options) => {
+        expect(topics).toBe(topic);
+        expect(message).toBe(payload);
+        expect(options).toBe(publishSettings);
+        done();
+      });
+      client.publish(topic, payload);
+    });
+    
+    it('should unsubscribe from a given topic', (done) => {
+      const topic = 'topic1';
+      const client = new MoscognitoClient({});
+      client.mqtt = {
+        unsubscribe(topics, callback) {} // eslint-disable-line
+      };
+      spyOn(client.mqtt, 'unsubscribe').andCallFake((topics, message, options) => {
+        expect(topics).toBe(topic);
+        done();
+      });
+      client.unsubscribe(topic);
+    });
+  });
 });
