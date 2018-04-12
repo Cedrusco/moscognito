@@ -111,6 +111,7 @@ npm run docker:run -- -r <region> -e <expiry> -u <access|id> -i <pool id> -t <to
 * Add backend configuration for standalone
 * Add certificate configuration for standalone
 * Increase code coverage
+* Add Authorization Code and Implicit flows to client
 
 ## Authors / Contributors
 

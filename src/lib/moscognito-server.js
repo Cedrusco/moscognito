@@ -86,6 +86,13 @@ class MoscognitoServer {
   }
 
   /**
+   * Stop the Moscognito server
+   */
+  stop() {
+    this.server.close();
+  }
+
+  /**
    * Decode and validate JWT
    * @param {string} token The undecoded JWT to validate and decode
    */

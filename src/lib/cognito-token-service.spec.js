@@ -32,6 +32,10 @@ describe('CognitoTokenService', () => {
       });
   });
 
+  afterEach(() => {
+    nock.cleanAll();
+  });
+
   it('should be defined', () => {
     expect(CognitoTokenService).toBeTruthy();
   });
@@ -42,7 +46,6 @@ describe('CognitoTokenService', () => {
 
   it('should make request to domain name + /oauth2/token', (done) => {
     cognitoTokenService.getToken().then((data) => {
-      console.info(JSON.stringify(data));
       expect(data.request.path).toEqual(tokenEndpoint);
       done();
     });
@@ -51,7 +54,6 @@ describe('CognitoTokenService', () => {
   it('should pass client ID and client credentials as Authorization header', (done) => {
     const base64Token = 'Basic SUQxMjM0NTY6U0VDUkVUU0FVQ0U=';
     cognitoTokenService.getToken().then((data) => {
-      console.info(JSON.stringify(data));
       expect(data.request.headers.authorization).toEqual(base64Token);
       done();
     });
@@ -60,7 +62,6 @@ describe('CognitoTokenService', () => {
   it('should pass in grant type and scopes as a x-www-form-urlencoded string', (done) => {
     const expectedBody = 'grant_type=client_credentials&scope=testing123.scope';
     cognitoTokenService.getToken().then((data) => {
-      console.info(JSON.stringify(data));
       expect(data.request.body).toEqual(expectedBody);
       done();
     });
@@ -69,7 +70,6 @@ describe('CognitoTokenService', () => {
   it('should pass in header content type as x-www-form-urlencoded', (done) => {
     const expectedContentType = 'application/x-www-form-urlencoded';
     cognitoTokenService.getToken().then((data) => {
-      console.info(JSON.stringify(data));
       expect(data.request.headers['content-type']).toEqual(expectedContentType);
       done();
     });
