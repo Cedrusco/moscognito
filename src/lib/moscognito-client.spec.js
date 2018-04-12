@@ -86,4 +86,51 @@ describe('MoscognitoClient', () => {
       });
     });
   });
+
+  describe('connect/disconnect', () => {
+    const client = new MoscognitoClient(
+      {
+        connection: {
+          url: domain
+        }
+      },
+      'username',
+      'password'
+    );
+
+    it('should connect to broker with given credentials', (done) => {
+      spyOn(client, 'initializeClient').andCallFake((credentials) => {
+        expect(credentials).toEqual({
+          username: 'username',
+          password: 'password'
+        });
+        done();
+      });
+      client.connect();
+    });
+
+    it('should attempt to disconnect from broker before making a new connection', (done) => {
+      let disconnectCount = 0;
+      spyOn(client, 'disconnect').andCallFake(() => {
+        disconnectCount += 1;
+      });
+      spyOn(client, 'initializeClient').andCallFake(() => {
+        expect(disconnectCount).toBe(1);
+        done();
+      });
+      client.connect();
+    });
+
+    it('should disconnect client if a client exists', () => {
+      let endCount = 0;
+      client.mqtt = {
+        end() {}
+      };
+      spyOn(client.mqtt, 'end').andCallFake(() => {
+        endCount += 1;
+      });
+      client.disconnect();
+      expect(endCount).toBe(1);
+    });
+  });
 });
