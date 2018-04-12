@@ -133,4 +133,39 @@ describe('MoscognitoClient', () => {
       expect(endCount).toBe(1);
     });
   });
+
+  describe('events', () => {
+    it('should attach onMessage to message event upon connect', (done) => {
+      const client = new MoscognitoClient(
+        {
+          connection: {
+            url: domain
+          }
+        },
+        'username',
+        'password',
+        () => {}
+      );
+      spyOn(client, 'disconnect').andCallFake(() => {});
+      spyOn(client, 'initializeClient').andCallFake(() => {});
+      spyOn(client, 'on').andCallFake((event, onMessage) => {
+        expect(event).toBe('message');
+        expect(onMessage).toBe(client.onMessage);
+        done();
+      });
+      client.connect();
+    });
+
+    it('should attach a handler to an event by a given name', (done) => {
+      const client = new MoscognitoClient({});
+      const eventName = 'subscribe';
+      const eventHandler = () => {};
+      spyOn(client, 'on').andCallFake((event, onMessage) => {
+        expect(event).toBe(eventName);
+        expect(onMessage).toBe(eventHandler);
+        done();
+      });
+      client.on(eventName, eventHandler);
+    });
+  });
 });

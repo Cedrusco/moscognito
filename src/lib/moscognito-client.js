@@ -25,6 +25,9 @@ class MoscognitoClient {
     // Attempt connection
     return this.getCredentials().then((credentials) => {
       this.initializeClient(credentials);
+      if (this.onMessage) {
+        this.on('message', this.onMessage);
+      }
     }).catch((error) => {
       console.error(error);
     });
@@ -33,9 +36,6 @@ class MoscognitoClient {
   initializeClient(credentials) {
     const options = Object.assign(credentials, this.config.options);
     this.mqtt = mqtt.connect(this.config.connection.url, options);
-    if (this.onMessage) {
-      this.mqtt.on('message', this.onMessage);
-    }
   }
 
   /**
