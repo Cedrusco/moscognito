@@ -10,8 +10,8 @@ class MoscognitoServer {
   }
 
   start() {
-    // Set up the Mosca server
-    this.server = new mosca.Server(this.moscaConfig);
+    // Initialize the server
+    this.initialize();
 
     // Set up authentication via JWT
     this.server.authenticate = (client, username, password, callback) => {
@@ -50,39 +50,38 @@ class MoscognitoServer {
 
     // - clientConnected, when a client is connected
     // the client is passed as a parameter.
-    this.server.on('clientConnected', (client) => {
-      this.onClientConnected(client);
-    });
+    this.server.on('clientConnected', this.onClientConnected);
 
     // - clientDisconnecting, when a client is being disconnected
     // the client is passed as a parameter.
-    this.server.on('clientDisconnecting', (client) => {
-      this.onClientDisconnecting(client);
-    });
+    this.server.on('clientDisconnecting', this.onClientDisconnecting);
 
     // - clientDisconnected, when a client is disconnected
     // the client is passed as a parameter.
-    this.server.on('clientDisconnected', (client) => {
-      this.onClientDisconnected(client);
-    });
+    this.server.on('clientDisconnected', this.onClientDisconnected);
 
     // - published, when a new message is published
     // the packet and the client are passed as parameters.
-    this.server.on('published', (message, client) => {
-      this.onPublished(message, client);
-    });
+    this.server.on('published', this.onPublished);
 
     // - subscribed, when a client is subscribed to a topic
     // the topic and the client are passed as parameters.
-    this.server.on('subscribed', (topic, client) => {
-      this.onSubscribed(topic, client);
-    });
+    this.server.on('subscribed', this.onSubscribed);
 
     // - unsubscribed, when a client is unsubscribed to a topic
     // the topic and the client are passed as parameters.
-    this.server.on('unsubscribed', (topic, client) => {
-      this.onSubscribed(topic, client);
-    });
+    this.server.on('unsubscribed', this.onUnsubscribed);
+  }
+
+  /**
+   * Set up the Mosca server
+   */
+  initialize() {
+    // Stop existing server if it exists
+    if (this.server) {
+      this.stop();
+    }
+    this.server = new mosca.Server(this.moscaConfig);
   }
 
   /**
