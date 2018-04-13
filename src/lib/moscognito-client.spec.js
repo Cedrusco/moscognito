@@ -209,14 +209,14 @@ describe('MoscognitoClient', () => {
       });
       client.publish(topic, payload);
     });
-    
+
     it('should unsubscribe from a given topic', (done) => {
       const topic = 'topic1';
       const client = new MoscognitoClient({});
       client.mqtt = {
         unsubscribe(topics, callback) {} // eslint-disable-line
       };
-      spyOn(client.mqtt, 'unsubscribe').andCallFake((topics, message, options) => {
+      spyOn(client.mqtt, 'unsubscribe').andCallFake((topics) => {
         expect(topics).toBe(topic);
         done();
       });
