@@ -1,6 +1,6 @@
 {
   "name": "moscognito",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Mosca MQTT server with hooks for authorizing with AWS Cognito.",
   "main": "index.js",
   "repository": {
