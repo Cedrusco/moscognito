@@ -11,7 +11,7 @@
     "moscognito": "./bin/moscognito.js"
   },
   "scripts": {
-    "prebuild": "rimraf dist && copyfiles package.json dist/ && copyfiles README.md dist/",
+    "prebuild": "rimraf dist && copyfiles package.json dist/ && copyfiles README.md dist/ && copyfiles Dockerfile dist/",
     "build": "copyfiles -u 1 'src/**/*.js' -e 'src/**/*.spec.js' src/index.js 'src/bin/*' dist/",
     "predocker:build": "npm run build",
     "docker:build": "docker build -t moscognito .",
