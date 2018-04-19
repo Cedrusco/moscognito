@@ -1,6 +1,6 @@
 {
   "name": "moscognito",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Mosca MQTT server with hooks for authorizing with AWS Cognito.",
   "main": "index.js",
   "repository": {
@@ -37,13 +37,13 @@
   ],
   "author": "Matt Johnson (/src-system42), Cedrus LLC",
   "contributors": [
-    { 
-      "name" : "Matt Johnson (/src-system42)",
-      "url" : "http://barnyrubble.tumblr.com/"
+    {
+      "name": "Matt Johnson (/src-system42)",
+      "url": "http://barnyrubble.tumblr.com/"
     },
-    { 
-      "name" : "Pat Petillo (PatPetillo)",
-      "url" : "https://github.com/PatPetillo"
+    {
+      "name": "Pat Petillo (PatPetillo)",
+      "url": "https://github.com/PatPetillo"
     }
   ],
   "license": "MIT",
