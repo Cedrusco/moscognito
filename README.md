@@ -116,6 +116,7 @@ npm run docker:run -- -r <region> -e <expiry> -u <access|id> -i <pool id> -t <to
 ## Authors / Contributors
 
 * Matt Johnson (src-system42)
+* Pat Petillo (PatPetillo)
 
 ## Credits / Inspiration
 
