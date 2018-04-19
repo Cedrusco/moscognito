@@ -11,15 +11,15 @@
     "moscognito": "./bin/moscognito.js"
   },
   "scripts": {
-    "prebuild": "rimraf dist && copyfiles package.json dist/",
+    "prebuild": "rimraf dist && copyfiles package.json dist/ && copyfiles README.md dist/",
     "build": "copyfiles -u 1 'src/**/*.js' -e 'src/**/*.spec.js' src/index.js 'src/bin/*' dist/",
     "predocker:build": "npm run build",
     "docker:build": "docker build -t moscognito .",
     "predocker:run": "npm run docker:build",
     "docker:run": "docker run moscognito",
     "lint": "eslint ./src",
-    "prepublish": "npm run lint && npm run test:coverage && npm run build",
-    "publish": "npm-cli-login && npm publish dist/",
+    "prepublish:package": "npm run lint && npm run test:coverage && npm run build",
+    "publish:package": "npm-cli-login && npm publish dist/",
     "test": "jasmine-node src",
     "test:watch": "jasmine-node src --autotest --watch src --color",
     "test:coverage": "istanbul cover --include-all-sources --root ./src jasmine-node src",

@@ -11,7 +11,7 @@
 
 ```
 
-## Moscognito Overview
+## Moscognito Overview (https://github.com/Cedrusco/moscognito)
 
 Modified Mosca MQTT server with AWS Cognito as both standalone and integrated Node.js class authorizing client connections and pub/sub.
 
