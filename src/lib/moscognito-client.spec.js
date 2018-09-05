@@ -99,7 +99,7 @@ describe('MoscognitoClient', () => {
     );
 
     it('should connect to broker with given credentials', (done) => {
-      spyOn(client, 'initializeClient').andCallFake((credentials) => {
+      spyOn(client, 'initializeClient').and.callFake((credentials) => {
         expect(credentials).toEqual({
           username: 'username',
           password: 'password'
@@ -111,10 +111,10 @@ describe('MoscognitoClient', () => {
 
     it('should attempt to disconnect from broker before making a new connection', (done) => {
       let disconnectCount = 0;
-      spyOn(client, 'disconnect').andCallFake(() => {
+      spyOn(client, 'disconnect').and.callFake(() => {
         disconnectCount += 1;
       });
-      spyOn(client, 'initializeClient').andCallFake(() => {
+      spyOn(client, 'initializeClient').and.callFake(() => {
         expect(disconnectCount).toBe(1);
         done();
       });
@@ -126,7 +126,7 @@ describe('MoscognitoClient', () => {
       client.mqtt = {
         end() {}
       };
-      spyOn(client.mqtt, 'end').andCallFake(() => {
+      spyOn(client.mqtt, 'end').and.callFake(() => {
         endCount += 1;
       });
       client.disconnect();
@@ -146,9 +146,9 @@ describe('MoscognitoClient', () => {
         'password',
         () => {}
       );
-      spyOn(client, 'disconnect').andCallFake(() => {});
-      spyOn(client, 'initializeClient').andCallFake(() => {});
-      spyOn(client, 'on').andCallFake((event, onMessage) => {
+      spyOn(client, 'disconnect').and.callFake(() => {});
+      spyOn(client, 'initializeClient').and.callFake(() => {});
+      spyOn(client, 'on').and.callFake((event, onMessage) => {
         expect(event).toBe('message');
         expect(onMessage).toBe(client.onMessage);
         done();
@@ -160,7 +160,7 @@ describe('MoscognitoClient', () => {
       const client = new MoscognitoClient({});
       const eventName = 'subscribe';
       const eventHandler = () => {};
-      spyOn(client, 'on').andCallFake((event, onMessage) => {
+      spyOn(client, 'on').and.callFake((event, onMessage) => {
         expect(event).toBe(eventName);
         expect(onMessage).toBe(eventHandler);
         done();
@@ -181,7 +181,7 @@ describe('MoscognitoClient', () => {
       client.mqtt = {
         subscribe(topics, options, callback) {} // eslint-disable-line
       };
-      spyOn(client.mqtt, 'subscribe').andCallFake((topics, options) => {
+      spyOn(client.mqtt, 'subscribe').and.callFake((topics, options) => {
         expect(topics).toBe(topic);
         expect(options).toBe(subscribeSettings);
         done();
@@ -201,7 +201,7 @@ describe('MoscognitoClient', () => {
       client.mqtt = {
         publish(topics, message, options, callback) {} // eslint-disable-line
       };
-      spyOn(client.mqtt, 'publish').andCallFake((topics, message, options) => {
+      spyOn(client.mqtt, 'publish').and.callFake((topics, message, options) => {
         expect(topics).toBe(topic);
         expect(message).toBe(payload);
         expect(options).toBe(publishSettings);
@@ -216,7 +216,7 @@ describe('MoscognitoClient', () => {
       client.mqtt = {
         unsubscribe(topics, callback) {} // eslint-disable-line
       };
-      spyOn(client.mqtt, 'unsubscribe').andCallFake((topics) => {
+      spyOn(client.mqtt, 'unsubscribe').and.callFake((topics) => {
         expect(topics).toBe(topic);
         done();
       });

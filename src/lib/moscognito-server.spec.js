@@ -9,7 +9,7 @@ describe('MoscognitoServer', () => {
       moscognito.server = {
         on(event, handler) {} // eslint-disable-line
       };
-      spyOn(moscognito, 'initialize').andCallFake(() => {});
+      spyOn(moscognito, 'initialize').and.callFake(() => {});
     });
 
     it('should return decoded token by default when getting user info', (done) => {
@@ -124,14 +124,14 @@ describe('MoscognitoServer', () => {
       moscognito.server = {
         on(event, handler) {} // eslint-disable-line
       };
-      spyOn(moscognito, 'initialize').andCallFake(() => {});
+      spyOn(moscognito, 'initialize').and.callFake(() => {});
     });
 
     it('should attach onClientConnected hook to server instance', () => {
       const onClientConnected = () => {};
       moscognito.onClientConnected = onClientConnected;
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event, handler) => {
+      spyOn(moscognito.server, 'on').and.callFake((event, handler) => {
         if (event === 'clientConnected' && handler === onClientConnected) {
           eventCount += 1;
         }
@@ -144,7 +144,7 @@ describe('MoscognitoServer', () => {
       const onClientDisconnecting = () => {};
       moscognito.onClientDisconnecting = onClientDisconnecting;
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event, handler) => {
+      spyOn(moscognito.server, 'on').and.callFake((event, handler) => {
         if (event === 'clientDisconnecting' && handler === onClientDisconnecting) {
           eventCount += 1;
         }
@@ -157,7 +157,7 @@ describe('MoscognitoServer', () => {
       const onClientDisconnected = () => {};
       moscognito.onClientDisconnected = onClientDisconnected;
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event, handler) => {
+      spyOn(moscognito.server, 'on').and.callFake((event, handler) => {
         if (event === 'clientDisconnected' && handler === onClientDisconnected) {
           eventCount += 1;
         }
@@ -170,7 +170,7 @@ describe('MoscognitoServer', () => {
       const onPublished = () => {};
       moscognito.onPublished = onPublished;
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event, handler) => {
+      spyOn(moscognito.server, 'on').and.callFake((event, handler) => {
         if (event === 'published' && handler === onPublished) {
           eventCount += 1;
         }
@@ -183,7 +183,7 @@ describe('MoscognitoServer', () => {
       const onSubscribed = () => {};
       moscognito.onSubscribed = onSubscribed;
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event, handler) => {
+      spyOn(moscognito.server, 'on').and.callFake((event, handler) => {
         if (event === 'subscribed' && handler === onSubscribed) {
           eventCount += 1;
         }
@@ -196,7 +196,7 @@ describe('MoscognitoServer', () => {
       const onUnsubscribed = () => {};
       moscognito.onUnsubscribed = onUnsubscribed;
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event, handler) => {
+      spyOn(moscognito.server, 'on').and.callFake((event, handler) => {
         if (event === 'unsubscribed' && handler === onUnsubscribed) {
           eventCount += 1;
         }
@@ -207,7 +207,7 @@ describe('MoscognitoServer', () => {
 
     it('should attach to ready hook during initialization', () => {
       let eventCount = 0;
-      spyOn(moscognito.server, 'on').andCallFake((event) => {
+      spyOn(moscognito.server, 'on').and.callFake((event) => {
         if (event === 'ready') {
           eventCount += 1;
         }
@@ -230,7 +230,7 @@ describe('MoscognitoServer', () => {
         },
         on(event, handler) {} // eslint-disable-line
       };
-      spyOn(moscognito, 'initialize').andCallFake(() => {
+      spyOn(moscognito, 'initialize').and.callFake(() => {
         initializeCount += 1;
       });
     });
